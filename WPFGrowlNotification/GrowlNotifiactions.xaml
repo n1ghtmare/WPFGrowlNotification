@@ -6,7 +6,7 @@
         Title="GrowlNotifiactions" Height="530" Width="300" ShowActivated="False" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Background="Transparent" Topmost="True" UseLayoutRounding="True">
     <Window.Resources>
         <Storyboard x:Key="CollapseStoryboard">
-            <DoubleAnimation From="100" To="0" Storyboard.TargetProperty="Height" Duration="0:0:1"/>
+            <DoubleAnimation From="100" To="0" Storyboard.TargetProperty="Height" Duration="0:0:0.3"/>
         </Storyboard>
         <DataTemplate x:Key="MessageTemplate" DataType="Model:Notification">
             <Grid x:Name="NotificationWindow" Tag="{Binding Path=Id}" Background="Transparent" SizeChanged="NotificationWindowSizeChanged">
@@ -54,7 +54,7 @@
                 <EventTrigger RoutedEvent="Button.Click" SourceName="CloseButton">
                     <BeginStoryboard>
                         <Storyboard >
-                            <DoubleAnimation Storyboard.TargetName="NotificationWindow" From="1" To="0" Storyboard.TargetProperty="(Grid.Opacity)" Duration="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="NotificationWindow" From="1" To="0" Storyboard.TargetProperty="(Grid.Opacity)" Duration="0:0:0.3"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
