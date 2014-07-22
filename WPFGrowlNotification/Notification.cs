@@ -1,66 +1,61 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace WPFGrowlNotification
-{
-    public class Notification : INotifyPropertyChanged
-    {
-        private string message;
-        public string Message
-        {
-            get { return message; }
+namespace WPFGrowlNotification {
+    public class Notification : INotifyPropertyChanged {
+        private string _message;
 
-            set
-            {
-                if (message == value) return;
-                message = value;
-                OnPropertyChanged("Message");
+        public string Message {
+            get { return _message; }
+            set {
+                if (_message != value) {
+                    _message = value;
+                    OnPropertyChanged("Message");
+                }
             }
         }
 
-        private int id;
-        public int Id
-        {
-            get { return id; }
+        private int _id;
 
-            set
-            {
-                if (id == value) return;
-                id = value;
-                OnPropertyChanged("Id");
+        public int Id {
+            get { return _id; }
+            set {
+                if (_id != value) {
+                    _id = value;
+                    OnPropertyChanged("Id");
+                }
             }
         }
 
-        private string imageUrl;
-        public string ImageUrl
-        {
-            get { return imageUrl; }
+        private string _imageUrl;
 
-            set
-            {
-                if (imageUrl == value) return;
-                imageUrl = value;
-                OnPropertyChanged("ImageUrl");
+        public string ImageUrl {
+            get { return _imageUrl; }
+            set {
+                if (_imageUrl != value) {
+                    _imageUrl = value;
+                    OnPropertyChanged("ImageUrl");
+                }
             }
         }
 
-        private string title;
-        public string Title
-        {
-            get { return title; }
+        private string _title;
 
-            set
-            {
-                if (title == value) return;
-                title = value;
-                OnPropertyChanged("Title");
+        public string Title {
+            get { return _title; }
+            set {
+                if (_title != value) {
+                    _title = value;
+                    OnPropertyChanged("Title");
+                }
             }
         }
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        protected virtual void OnPropertyChanged(string propertyName) {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

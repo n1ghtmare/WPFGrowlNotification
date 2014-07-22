@@ -49,10 +49,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <DesignData Include="DesignTimeNotificationData.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </DesignData>
     <Page Include="GrowlNotifiactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,13 +99,17 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\facebook-button.png" />
-    <Resource Include="Resources\microsoft-windows-8-logo.png" />
-    <Resource Include="Resources\notification-icon.png" />
-    <Resource Include="Resources\Radiation_warning_symbol.png" />
+    <Resource Include="Resources\file-text_000000_80.png" />
+    <Resource Include="Resources\times_000000_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\facebook-square_000000_80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\info-circle_000000_80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\warning_000000_80.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
