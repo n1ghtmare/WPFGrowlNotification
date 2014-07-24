@@ -5,43 +5,46 @@ using System.Windows.Controls;
 
 namespace WPFGrowlNotification {
     public partial class GrowlNotifiactions {
-        private const byte MAX_NOTIFICATIONS = 4;
-        private int count;
-        public readonly Notifications Notifications = new Notifications();
-        private readonly Notifications buffer = new Notifications();
+        private const byte MaxNotifications = 4;
+
+        private int _count;
+        private readonly Notifications _notifications, _notificationsBuffer;
 
         public GrowlNotifiactions() {
+            _notifications = new Notifications();
+            _notificationsBuffer = new Notifications();
+
             InitializeComponent();
-            NotificationsControl.DataContext = Notifications;
+            NotificationsControl.DataContext = _notifications;
         }
 
         public void AddNotification(Notification notification) {
-            notification.Id = count++;
-            if (Notifications.Count + 1 > MAX_NOTIFICATIONS) {
-                buffer.Add(notification);
+            notification.Id = _count++;
+            if (_notifications.Count + 1 > MaxNotifications) {
+                _notificationsBuffer.Add(notification);
             }
             else {
-                Notifications.Add(notification);
+                _notifications.Add(notification);
             }
 
             // Show window if there're notifications
-            if (Notifications.Count > 0 && !IsActive) {
+            if (_notifications.Count > 0 && !IsActive) {
                 Show();
             }
         }
 
         public void RemoveNotification(Notification notification) {
-            if (Notifications.Contains(notification)) {
-                Notifications.Remove(notification);
+            if (_notifications.Contains(notification)) {
+                _notifications.Remove(notification);
             }
 
-            if (buffer.Count > 0) {
-                Notifications.Add(buffer[0]);
-                buffer.RemoveAt(0);
+            if (_notificationsBuffer.Count > 0) {
+                _notifications.Add(_notificationsBuffer[0]);
+                _notificationsBuffer.RemoveAt(0);
             }
 
             //Close window if there's nothing to show
-            if (Notifications.Count < 1) {
+            if (_notifications.Count < 1) {
                 Hide();
             }
         }
@@ -49,7 +52,9 @@ namespace WPFGrowlNotification {
         private void NotificationWindowSizeChanged(object sender, SizeChangedEventArgs e) {
             if (Math.Abs(e.NewSize.Height) < 0.1) {
                 var element = sender as Grid;
-                RemoveNotification(Notifications.First(n => n.Id == Int32.Parse(element.Tag.ToString())));
+                if (element != null) {
+                    RemoveNotification(_notifications.First(n => n.Id == int.Parse(element.Tag.ToString())));
+                }
             }
         }
     }
